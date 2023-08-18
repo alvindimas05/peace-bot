@@ -66,6 +66,7 @@ class Command {
                 if(!line.includes("content")) continue;
     
                 message = message.slice(message.indexOf('"content":"') + 11);
+                message = message.replace(/\\n/g, "\n");
                 var token = "";
                 for(var i = 0; i < message.length; i++){
                     var c = message[i];
