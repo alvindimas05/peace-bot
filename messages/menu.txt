@@ -1,0 +1,6 @@
+List Menu :
+Prefix : {prefix}
+
+- i/image = Generate image dari AI
+- c/chat = Generate chatgpt
+- s/sticker = Buat stiker

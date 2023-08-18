@@ -1,0 +1,22 @@
+{
+  "name": "aybot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node .",
+    "test": "ts-node test.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@commonify/lowdb": "^3.0.0",
+    "@types/axios": "^0.14.0",
+    "@types/qrcode-terminal": "^0.12.0",
+    "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "fs": "^0.0.1-security",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.22.1"
+  }
+}
