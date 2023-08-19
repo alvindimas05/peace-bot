@@ -88,6 +88,9 @@ class Command {
         if(!done) await this.processChat(reader, decoder);
         else await this.reply?.edit(this.chat_msg);
     }
+    async setProcess(){
+        await this.message.react("⏳");
+    }
     async sticker(){
         // If has mention
         if(this.message.hasQuotedMsg){
@@ -112,8 +115,8 @@ class Command {
         return ["image/png", "image/jpeg", "image/gif", "video/mp4"].includes(media.mimetype);
     }
     async image(){
+        this.setProcess();
         try {
-            this.message.react("⏳");
             var res = await axios.post("https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1", {
                 inputs: this.msg,
                 wait_for_model: true
@@ -129,6 +132,24 @@ class Command {
     }
     async menu(){
         this.message.reply(MENU);
+    }
+    async waifu(){
+        this.setProcess();
+        try {
+            this.setProcess();
+            this.msg = "masterpiece, high quality, " + this.msg;
+            var res = await axios.post("https://api-inference.huggingface.co/models/hakurei/waifu-diffusion", {
+                inputs: this.msg,
+                wait_for_model: true
+            }, {
+                headers: { "Authorization": `Bearer ${HF_API_KEY}` },
+                responseType: "arraybuffer"
+            });
+            var media = new MessageMedia("image/png", Buffer.from(res.data, "binary").toString("base64"));
+            this.message.reply(media);
+        } catch(err: any){
+            this.message.reply(err.toString());
+        }
     }
     async blacklist(){
         if(!await this.checkFromOwner()) return;

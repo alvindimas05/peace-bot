@@ -26,6 +26,10 @@ client.on("message", async message => {
         case "chat":
             command.chat();
             break;
+        case "w":
+        case "waifu":
+            command.waifu();
+            break;
         case "bl":
         case "blacklist":
             command.blacklist();
